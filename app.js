@@ -1,17 +1,22 @@
 const express = require('express');
+const config = require('config');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const Joi= require('joi');
 const logger = require('./logger');
 const app = express();
 app.use(helmet());
-app.use(morgan('tiny'));
 app.use(express.json());
 app.use(express.urlencoded({
     extended: true
 }));
 app.use(express.static('public'));
 app.use(logger);
+if (app.get('env')==='development'){
+    app.use(morgan('tiny'));
+    console.log("morgan enabled");
+}
+console.log(config.get('name'));
 
 const port = 3000;
 
