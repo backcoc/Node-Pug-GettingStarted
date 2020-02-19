@@ -2,9 +2,9 @@
 const express = require("express");
 const routes = express.Router();
 const Joi = require('joi');
+
 //use
 routes.use(express.json());
-
 
 //dictionary
 const products = [{
